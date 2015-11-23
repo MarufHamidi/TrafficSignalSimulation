@@ -228,6 +228,8 @@ int main(void)
 	get_conf();
 	int drs;
 	int stat;
+	int total_dynamic_capacity = 0;
+	int total_static_capacity = 0;
 	csv<<"Iteration, Dynammic, , , Iteration, Static"<<endl;
 	for(int i=1;i<=total_iteration;i++){
 		cout<<"----------------Iteration #"<<i<<" --------------------"<<endl;
@@ -237,7 +239,18 @@ int main(void)
 		csv<<i<<", "<<drs<<", , , "<<i<<", "<<stat<<endl;
 		dynamic<<drs<<endl;
 		static_data<<stat<<endl;
+		total_dynamic_capacity += drs;
+		total_static_capacity += stat;
 	}
+	logger<<endl<<endl<<"-----------------------------------"<<endl;
+	logger<<"Average capacity"<<endl;
+	logger<<"Dynamic : "<<(int)(total_dynamic_capacity / total_iteration)<<endl;
+	logger<<"Static : "<<(int)(total_static_capacity / total_iteration)<<endl;
+	csv<<" , , , , , "<<endl;
+	csv<<" , , , , , "<<endl;
+	csv<<" , , , , , "<<endl;
+	csv<<" , , , , , "<<endl;
+	csv<<"Dynamic average , "<<(int)(total_dynamic_capacity / total_iteration)<<", , , Static average, "<<(int)(total_static_capacity / total_iteration)<<endl;
 	system("cls");
 	cout<<"Simulation has been completed successfully."<<endl<<endl;
 	cout<<"\'.csv\' file contains result."<<endl<<endl;
